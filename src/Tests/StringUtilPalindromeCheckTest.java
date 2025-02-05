@@ -1,10 +1,9 @@
 package Tests;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utility.StringUtil;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StringUtilPalindromeCheckTest {
@@ -14,7 +13,7 @@ class StringUtilPalindromeCheckTest {
 
         assertTrue(StringUtil.isPalindrome("rAcecaR"), "JAVA READS IT SAME");
         assertTrue(StringUtil.isPalindrome("radar"), "JAVA READS IT SAME");
-        Assertions.assertFalse(StringUtil.isPalindrome("fail"), "JAVA DOESNT READ IT AS SAME");
+        assertFalse(StringUtil.isPalindrome("fail"), "JAVA DOESNT READ IT AS SAME");
     }
 
     @Test

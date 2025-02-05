@@ -1,36 +1,46 @@
 package Tests;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utility.StringUtil;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-class StringUtilPalindromeCheckTest {
+import static org.junit.jupiter.api.Assertions.assertFalse;
+class StringUtilAnagramCheckTest {
     @Test
-    public void testisPalindrome_WithCyanString() {
+    public void testisAnagram_WithCyanString() {
         // Test Cyan strings
 
-        assertTrue(StringUtil.isPalindrome("rAcecaR"), "JAVA READS IT SAME");
-        assertTrue(StringUtil.isPalindrome("radar"), "JAVA READS IT SAME");
-        Assertions.assertFalse(StringUtil.isPalindrome("fail"), "JAVA DOESNT READ IT AS SAME");
+        assertFalse(StringUtil.isAnagram("continuous integration", "i am not even trying"), "JAVA SAYS ITS SAME");
+        assertFalse(StringUtil.isAnagram("design patterns","trending passions"), "JAVA SAYS ITS SAME");
+        assertFalse(StringUtil.isAnagram("software architecture","wise tracer of hi tech war"), "JAVA DOESNT SAY ITS SAME");
+        assertTrue(StringUtil.isAnagram("software","waresoft"), "JAVA DOESNT SAY ITS SAME");
+
     }
 
     @Test
-    public void testisPalindrome_WithAllSameChars() {
+    public void testisAnagram_WithAllSameChars() {
         // Test where all similar characters
-        String data = "11111";
-        boolean result = StringUtil.isPalindrome(data);
-        assertTrue(result, "JAVA READS IT SAME");
+        String data1 = "999999999";
+        String data2 = "999999999";
+        boolean result = StringUtil.isAnagram(data1, data2);
+        assertTrue(result, "JAVA SAYS ITS SAME");
     }
 
     @Test
-    public void testisPalindrome_WithEmptyString() {
+    public void testisAnagram_WithEmptyString() {
         // Test an empty string
-        String data = "";
-        boolean result = StringUtil.isPalindrome(data);
-        assertTrue(result, "JAVA READS IT SAME");
+        String data1 = "";
+        String data2 = "";
+        boolean result = StringUtil.isAnagram(data1, data2);
+        assertTrue(result, "JAVA SAYS ITS SAME");
     }
 
+    @Test
+    public void testisAnagram_WithComplexString() {
+        // Test an empty string
+        String data1 = "oh! my  eyes, ... ";
+        String data2 = "hoy, see  my ...!";
+        boolean result = StringUtil.isAnagram(data1, data2);
+        assertTrue(result, "JAVA SAYS ITS SAME");
+    }
 }

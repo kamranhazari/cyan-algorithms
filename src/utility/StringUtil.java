@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,12 +35,13 @@ public class StringUtil {
         }
         return -1;
     }
+
     /**
      * check if the given String reads the same backwards as forwards.
      * lowerCase of characters are considered only!
      *
      * @param inputData the sequence of characters to check back/forward reading is same
-     * @return if JAVA can read it forward same as backward ;)
+     * @return true if JAVA can read it forward same as backward ;)
      **/
     public static boolean isPalindrome(String inputData) {
         inputData = inputData.toLowerCase();
@@ -54,6 +56,34 @@ public class StringUtil {
             return false;
         }
         return isPalindromeRec(inputData, left + 1, right - 1);
+    }
+
+    /**
+     * check if both given Strings are made of same exact characters.
+     * lowerCase of characters are considered only!
+     * <p>
+     * Note this method uses parallelSort as for time complexity it should be considered far large sized
+     * strings (https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)
+     *
+     * @param firstString  the sequence of characters to check back/forward reading is same
+     * @param secondString the sequence of characters to check back/forward reading is same
+     * @return true if JAVA says both have same characters ;)
+     **/
+    public static boolean isAnagram(String firstString, String secondString) {
+        //normalize inputs and remove space,tab and newline
+        firstString = firstString.toLowerCase().replaceAll("\\s", "");
+        secondString = secondString.toLowerCase().replaceAll("\\s", "");
+
+        if (firstString.length() != secondString.length()) return false;
+
+        var chArr1 = firstString.toCharArray();
+        var chArr2 = secondString.toCharArray();
+
+        //chnage to Arrays.sort() for small sized strings
+        Arrays.parallelSort(chArr1);
+        Arrays.parallelSort(chArr2);
+
+        return Arrays.equals(chArr1, chArr2);
     }
 
 }
